@@ -41,7 +41,7 @@
         }
 
         //password validation -- if desired
-        public function validPassword($password) {
+        public function validPassword($password): bool {
             if (empty($password)) {
                 $valid = false;
             } else if (preg_match("/^[a-zA-Z0-9]{4,20}$/", $password)) {
@@ -76,7 +76,7 @@
                 if (!empty($_POST["signup_password"])) {
                     $hashedPassword = password_hash($_POST["signup_password"]);
                 }
-                $query = 'INSERT INTO user_credentials (username, password, email) VALUES (?,?,?)';
+                $query = 'INSERT INTO user_credentials (name, username, password) VALUES (?,?,?)';
                 $paramType = 'sss';
                 $paramValue = array(
                     $_POST["username"],
@@ -95,9 +95,15 @@
             return $response;
         }
 
-        public function getUser($con, $username) {
-            $query = $con->prepare("SELECT * FROM tbl_users WHERE username = ? AND password = ?");
-            return $username;
+        public function getUser($con, $username, $password) {
+            $query = 'SELECT * FROM user_credentials where username = ? AND password = ?';
+            $paramType = 's';
+            $paramValue = array(
+                $username,
+                $password
+            );
+            $userData = $this->$con->select($query, $paramType, $paramValue);
+            return $userData;
         }
 
         /**
@@ -106,34 +112,30 @@
          * @return string
          */
         public function loginUser() {
-            $userRecord = $this->getUser($_POST["username"]);
+            $userData = $this->getUser($_POST["username"]);
             $loginPassword = 0;
 
-            //checks if username and password are both filled in
-            if (!empty($userRecord)) {
-                if (!empty($_POST["login-password"])) {
-                    $password = $_POST["login-password"];
+            if (!empty($userData)) {
+                if (!empty($_POST["password"])) {
+                    $password = $_POST["password"];
                 }
-                $hashedPassword = $userRecord[0]["password"];
+                $hashedPassword = $userData[0]["password"];
                 $loginPassword = 0;
-
-                //checks if password is correct
                 if (password_verify($password, $hashedPassword)) {
                     $loginPassword = 1;
                 }
             } else {
                 $loginPassword = 0;
             }
-
             if ($loginPassword == 1) {
-                //login successful -- username is stored in session
+                // login success so store the member's username in
+                // the session
                 session_start();
-                $_SESSION["username"] = $userRecord[0]["username"];
+                $_SESSION["username"] = $userData[0]["username"];
                 session_write_close();
-                $url = "./home.php";
-                header("Location: $url");
+                header("location: panel_admin.php");
             } else if ($loginPassword == 0) {
-                $loginStatus = "invalid username or password";
+                $loginStatus = "invalid username or password.";
                 return $loginStatus;
             }
         }
