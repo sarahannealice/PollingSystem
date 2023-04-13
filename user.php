@@ -15,7 +15,8 @@
             $this->isAdmin = $isAdmin;
         }
 
-        public function validName($name) {
+        public function validName($name): bool
+        {
             if (empty($name)) {
                 $valid = false;
             } else if (preg_match("/^[a-zA-Z]{3,20}$/", $name)) {
@@ -27,7 +28,8 @@
         }
 
         //username validation
-        public function validUsername($username) {
+        public function validUsername($username): bool
+        {
             if (empty($username)) {
                 $valid = false;
             } else if (preg_match("/^[a-zA-Z0-9]{4,20}$/", $username)) {
@@ -40,9 +42,9 @@
 
         //password validation -- if desired
         public function validPassword($password) {
-            if (empty($powe)) {
+            if (empty($password)) {
                 $valid = false;
-            } else if (preg_match("/^[a-zA-Z0-9]{4,20}$/", $username)) {
+            } else if (preg_match("/^[a-zA-Z0-9]{4,20}$/", $password)) {
                 $valid = true;
             } else {
                 $valid = false;
@@ -55,11 +57,12 @@
          *
          * @return string[] registration status message
          */
-        public function registerUser($con, $user) {
+        public function registerUser() {
+            $validName = $this->validName($_POST["name"]);
             $validUsername = this->validUsername($_POST["username"]);
-            $validEmail = this->validEmail($_POST["email"]);
+            $validPassword = this->validPassword($_POST["password"]);
 
-            if (!$validEmail) {
+            if (!$validName) {
                 $response = array(
                     "status" => "error",
                     "message" => "username already exists"
@@ -73,7 +76,7 @@
                 if (!empty($_POST["signup_password"])) {
                     $hashedPassword = password_hash($_POST["signup_password"]);
                 }
-                $query = 'INSERT INTO tbl_user (username, password, email) VALUES (?,?,?)';
+                $query = 'INSERT INTO user_credentials (username, password, email) VALUES (?,?,?)';
                 $paramType = 'sss';
                 $paramValue = array(
                     $_POST["username"],
