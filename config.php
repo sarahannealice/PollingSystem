@@ -1,34 +1,33 @@
 <?php
     function connect() {
         //database configuration
-        $localhost = "localhost";
+        $host = "localhost";
         $username = "root";
         $password = "";
-        $dbname = "data_source";
+        $dbname = "data_source1";
 
         //create database connection
-        $con = new mysqli($localhost, $username, $password, $dbname);
+        $data = mysqli_connect($host, $username, $password, $dbname);
+        $con = new mysqli($host, $username, $password, $dbname);
 
         //check connection
-        if ($con->connect_error) {
-            die("connection failed: " . $con->connect_error);
-        }
+        if ($data === true) {
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                $sql = "SELECT * FROM user_credentials WHERE username = ? AND password = ?";
 
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $sql = "SELECT * FROM user_credentials WHERE username = ? AND password = ?";
+                $result = mysqli_query($sql);
+                $row = mysqli_fetch_array($result);
 
-            $result = mysqli_query($con, $sql);
-            $row = mysqli_fetch_array($result);
-
-            if ($row["usertype"] == "admin") {
-                //header("location: ");
-            } else if ($row["usertype"] == "officer") {
-                //header("location: ");
-            } else if ($row["usertype"] == "user") {
-                header("location: ");
-            } else {
-                echo "invalid username or password";
+                if ($row['admin'] == 1) {
+                    header("location: panel_admin.php");
+                } else if ($row['admin'] == 0) {
+                    header("location: dashboard.php");
+                } else {
+                    echo "invalid username or password";
+                }
             }
+        } else {
+            die("connection failed");
         }
     }
 ?>

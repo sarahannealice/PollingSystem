@@ -1,4 +1,29 @@
 <?php
+    session_start();
+
+    //include database connectivity
+    $con = include_once('config.php');
+
+    if (isset($_POST['submit'])) {
+        $errorMsg = "";
+
+        $username = $_POST["username"];
+        $password = $_POST["password"];
+
+        if (!empty($username) && !empty($password)) {
+            $query = "SELECT * FROM user_credentials WHERE username = '$username' AND password = '$password'";
+            $result = $con->query($query);
+
+            if ($result->num_rows > 0) {
+                $row = $result->fetch_assoc();
+            } else {
+                $errorMsg = "no user found";
+            }
+        } else {
+            //although unnecessary, keeping as a backup
+            $errorMsg = "username and password required";
+        }
+    }
 ?>
 
 <!DOCTYPE HTML>
@@ -20,14 +45,14 @@
                     <div class="row">
                         <div class="inline_block">
                             <div class="form_label">Username</div>
-                            <input class="input_text" type="text" name="username">
+                            <input class="input_text" type="text" name="username" required>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="inline_block">
                             <div class="form_label">Password</div>
-                            <input class="input_text" type="password" name="password">
+                            <input class="input_text" type="password" name="password" required>
                         </div>
                     </div>
 

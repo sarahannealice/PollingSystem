@@ -1,9 +1,8 @@
 <h4>Cast your vote below!</h4>
 
-
 <form action="" method="post">
     <fieldset>
-        <?php
+        <?php/*
         foreach ($candidateList as $row) {
             ?>
             <input type="radio" name="candidate" id="candidate<?php echo $row[0] ?>" value="<?php echo $row[0] ?>" required="required">
@@ -11,7 +10,7 @@
             <br>
             <?php
         }
-        ?>
+        */?>
     </fieldset>
     <button type="submit">Submit Vote</button>
 </form>
