@@ -11,20 +11,20 @@
   <div class="register"><a href="registration.html">Register</a></div>
 
   <div class="login_form">
-    <form name="login" action="./config.php" method="post">
+    <form name="login" action="./login.php" method="post" onsubmit="loginValidation()">
       <h1>Login</h1>
 
       <div class="row">
         <div class="inline_block">
           <div class="form_label">Username</div>
-          <input class="input_text" type="text" name="username" required>
+          <input class="input_text" type="text" name="username" id="username" required>
         </div>
       </div>
 
       <div class="row">
         <div class="inline_block">
           <div class="form_label">Password</div>
-          <input class="input_text" type="password" name="password" required>
+          <input class="input_text" type="password" name="password" id="password" required>
         </div>
       </div>
 
@@ -37,32 +37,16 @@
 
 
 <!--javascript to validate user input for registration-->
+<!--https://html.form.guide/snippets/javascript-form-validation-using-regular-expression/-->
 <script>
   function loginValidation() {
-    var valid = true;
-    $("#username").removeClass("error-field");
-    $("#password").removeClass("error-field");
+    var username = document.getElementById('username').value;
+    var usernameRegex = /^[a-zA-Z0-9]{4,20}$/;
+    var usernameResult = usernameRegex.test(username);
 
-    var UserName = $("#username").val();
-    var Password = $('#login-password').val();
-
-    $("#username-info").html("").hide();
-
-    if (UserName.trim() == "") {
-      $("#username-info").html("required.").css("color", "#ee0000").show();
-      $("#username").addClass("error-field");
-      valid = false;
+    if (!usernameResult) {
+      alert("invalid username");
     }
-    if (Password.trim() == "") {
-      $("#login-password-info").html("required.").css("color", "#ee0000").show();
-      $("#login-password").addClass("error-field");
-      valid = false;
-    }
-    if (valid == false) {
-      $('.error-field').first().focus();
-      valid = false;
-    }
-    return valid;
   }
 </script>
 </body>

@@ -1,41 +1,30 @@
 <?php
-    include "user.php";
+    include "config.php";
 
     if (isset($_POST['username']) && isset($_POST['password'])) {
-
         $username = $_POST['username'];
         $password = $_POST['password'];
-
         $con = connect();
-        //find the user in the db
-        $data = getUser($con, $username, $password);
 
-        if (mysqli_num_rows($data) === 1) {
+        $query = "SELECT * FROM user_credentials WHERE username = '$username' AND password = '$password'";
+        $data = $con->query($query);
 
-            $row = $data->fetch_assoc();
+        if ($data->num_rows > 0) {
+            $userData = $data->fetch_assoc();
 
-            if ($row['username'] == $username && $row['password'] == $password) {
-
-                //if a normal user has logged in, go to voting. Otherwise, go to the admin panel
-                if ($row['is_admin'] == 0)
-                    header("Location: voting_page.php");
+            if ($userData['username'] == $username && $userData['password'] == $password) {
+                if ($userData['admin'] == 0)
+                    header("location: dashboard.php");
                 else
-                    header("Location: admin_panel.php");
-
+                    header("location: dashboard_admin.php");
             } else {
-
-                echo "incorrect username or password";
-                header("Location: login.html");
+                header("location: login.html");
             }
-
         } else {
-
             echo "incorrect username or password";
-            header("Location: login.html");
+            header("location: login.html");
         }
-
     } else {
-
-        header("Location: login.html");
+        header("location: login.html");
     }
 ?>

@@ -1,16 +1,14 @@
-<h4>Cast your vote below!</h4>
+<?php
+?>
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
 
-<form action="" method="post">
-    <fieldset>
-        <?php/*
-        foreach ($candidateList as $row) {
-            ?>
-            <input type="radio" name="candidate" id="candidate<?php echo $row[0] ?>" value="<?php echo $row[0] ?>" required="required">
-            <label for="candidate<?php echo $row[0]?>"><?php echo $row[1] ?></label>
-            <br>
-            <?php
-        }
-        */?>
-    </fieldset>
-    <button type="submit">Submit Vote</button>
-</form>
+<body>
+<h1>welcome to the user panel</h1>
+</body>
+</html>
