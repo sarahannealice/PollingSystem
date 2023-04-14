@@ -4,9 +4,8 @@
     $con = connect();
 
     //collects current candidates
-    $sql = "SELECT * FROM candidates";
-    $result = $con->query($sql);
-    $candidates = $result->fetch_assoc();
+    $sql = "SELECT name FROM candidates";
+    $candidates = $con->query($sql);
 ?>
 
 
@@ -24,37 +23,45 @@
             <h1>may the odds be ever in your favour</h1>
 
             <div class="vote_form">
-                <form name="vote" action="./thank_you.php" method="post" onsubmit="return isChecked()">
+                <form name="vote" action="./thank_you.php" method="post" onsubmit="userVoted()">
                     <?php
                     foreach ($candidates as $row) {
-//                echo "<tr><td>".$row['name']."</td></tr>";
                         ?>
                         <div class="row">
-
-
-                            <input type="radio" class="candidate" name="candidates" id="candidates<?php echo $row[0] ?>" value="<?php echo $row[0] ?>" required="required">
-                            <label for="candidates<?php echo $row[0]?>"></label>
-                            <!--                    <br>-->
-                            <!--                    <input type="radio" class="candidate">-->
-                            <!--                    <label>test1</label>-->
-                            <!--                    <input type="radio" class="candidate">-->
-                            <!--                    <label>test2</label>-->
+                            <input type="radio" class="candidate" name="candidates" id="candidates<?php echo $row['name'] ?>" value="<?php echo $row['name'] ?>" required>
+                            <label for="candidates<?php echo $row['name']?>"><?php echo $row['name'] ?></label>
                         </div>
 
                         <?php
                     }
                     ?>
-
                     <div class="row">
-                        <input class="btn" type="submit" name="register_candidate" value="Register">
+                        <input class="btn" type="submit" name="register_candidate" value="Vote">
                     </div>
                 </form>
             </div>
         </div>
 
         <script>
-            function isChecked() {
-                return ($('input[type=radio]:checked').size > 0);
+            function userVoted() {
+                var mysql = require('mysql');
+
+                var con = mysql.createConnection({
+                    host: "localhost",
+                    user: "root",
+                    password: "Password"
+                });
+
+                con.connect(function(err) {
+                    if (err) throw err;
+                    console.log("Connected!");
+
+                    var sql = "UPDATE TABLE users (voted) VALUE ('1') WHERE username = '".$_SESSION['user']."'";
+                    con.query(sql, function (err, result) {
+                        if (err) throw err;
+                        console.log("Result: " + result);
+                    });
+                });
             }
         </script>
     </body>

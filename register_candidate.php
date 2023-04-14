@@ -1,6 +1,5 @@
 <?php
     include "config.php";
-    //starts-resumes session
     session_start();
 
     if (isset($_POST['candidate_name'])) {
@@ -9,7 +8,6 @@
 
         //grabs current user info to later check if admin or not
         $id = $_SESSION['id'];
-        echo "<script>alert('user id: ' + $id);</script>";
         $sql = "SELECT * FROM users WHERE id = '$id'";
         $result = $con->query($sql);
         $user = $result->fetch_assoc();
@@ -21,7 +19,7 @@
         $result = $con->query($query);
 
         if ($result->num_rows > 0) {
-            echo "<script>alert('candidate already exists'); window.location.href='register_candidate.html';</script>";
+            echo "<script>alert('candidate already exists'); window.location.href='candidate.php';</script>";
         } else {
             //registers new candidate and updates if user can vote or not
             $sqlCan = "INSERT INTO `candidates` (name) VALUES ('$name')";

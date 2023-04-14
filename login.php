@@ -1,30 +1,63 @@
 <?php
-    include "config.php";
-
-    if (isset($_POST['username']) && isset($_POST['password'])) {
-        $username = $_POST['username'];
-        $password = $_POST['password'];
-        $con = connect();
-
-        $query = "SELECT * FROM users WHERE username = '$username' AND password = '$password'";
-        $data = $con->query($query);
-
-        if ($data->num_rows > 0) {
-            $userData = $data->fetch_assoc();
-
-            if ($userData['username'] == $username && $userData['password'] == $password) {
-                if ($userData['admin'] == 0) {
-                    header("location: home.php");
-                } else
-                    header("location: home_admin.php");
-            } else {
-                //https://stackoverflow.com/a/29815470
-                echo "<script>alert('an error has occurred. please try again'); window.location.href='login.html';</script>";
-            }
-        } else {
-            echo "<script>alert('invalid username or password'); window.location.href='login.html';</script>";
-        }
-    } else {
-        echo "<script>alert('invalid username or password'); window.location.href='login.html';</script>";
-    }
+    session_start();
 ?>
+
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="register"><a href="registration.html">Register</a></div>
+      <h1>Login</h1>
+
+      <div class="login_form">
+        <form name="login" action="check_login.php" method="post" onsubmit="return loginValidation()">
+
+          <div class="row">
+            <div class="inline_block">
+              <div class="form_label">Username</div>
+              <input class="input_text" type="text" name="username" id="username" required>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="inline_block">
+              <div class="form_label">Password</div>
+              <input class="input_text" type="password" name="password" id="password" required>
+            </div>
+          </div>
+
+          <div class="row">
+            <input class="btn" type="submit" name="login_btn" value="Login">
+          </div>
+        </form>
+      </div>
+    </div>
+
+
+    <!--javascript to validate user input for registration-->
+    <!--https://html.form.guide/snippets/javascript-form-validation-using-regular-expression/-->
+    <!--https://www.tutorialspoint.com/How-to-stop-form-submission-using-JavaScript-->
+    <script>
+      function loginValidation() {
+        var valid;
+        var username = document.getElementById('username').value;
+        var usernameRegex = /^[a-zA-Z0-9]{3,20}$/;
+        var usernameResult = usernameRegex.test(username);
+
+        if (!usernameResult) {
+          alert("invalid username");
+          valid =  false;
+        } else {
+          valid = true;
+        }
+        return valid;
+      }
+    </script>
+  </body>
+</html>

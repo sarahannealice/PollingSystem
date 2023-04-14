@@ -24,7 +24,7 @@
         } else {
             $sql = "INSERT INTO users (name, username, password, admin) VALUES ('$name', '$username', '$password', 0)";
             $result = $con->query($sql);
-            header("location: login.html");
+            header("location: login.php");
         }
     } else {
         echo "<script>alert('all fields must be filled'); window.location.href='registration.html';</script>";

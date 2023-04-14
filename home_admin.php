@@ -1,5 +1,4 @@
 <?php
-    include "config.php";
     session_start();
 ?>
 
@@ -17,7 +16,7 @@
             <h1>Welcome Admin!</h1>
 
             <div class="candidate">
-                <form name="candidate" action="register_candidate.html" method="post" onsubmit="">
+                <form name="candidate" action="candidate.php" method="post" onsubmit="">
                     <div class="row">
                         <div class="home_label">Register Candidate</div>
                         <input class="btn" type="submit" name="register_candidate" value="Register">
