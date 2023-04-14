@@ -6,7 +6,7 @@
         $password = $_POST['password'];
         $con = connect();
 
-        $query = "SELECT * FROM user_credentials WHERE username = '$username' AND password = '$password'";
+        $query = "SELECT * FROM user WHERE username = '$username' AND password = '$password'";
         $data = $con->query($query);
 
         if ($data->num_rows > 0) {
@@ -16,9 +16,9 @@
                 if ($userData['admin'] == 0) {
                     header("location: dashboard.php");
                 } else
-                    echo "<script>alert('login successful');</script>";
                     header("location: dashboard_admin.php");
             } else {
+                //https://stackoverflow.com/a/29815470
                 echo "<script>alert('an error has occurred. please try again'); window.location.href='login.html';</script>";
             }
         } else {

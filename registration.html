@@ -8,7 +8,7 @@
 
   <body>
     <div class="container">
-      <div class="register"><a href="login.php">Login</a></div>
+      <div class="register"><a href="login.html">Login</a></div>
 
       <div class="login_form">
         <form name="register" action="./registration.php" method="post" onsubmit="signupValidation()">
@@ -36,13 +36,6 @@
           </div>
 
           <div class="row">
-            <div class="inline_block">
-              <div class="form_label">Confirm Password</div>
-              <input class="input_text" type="password" name="password_confirm" required>
-            </div>
-          </div>
-
-          <div class="row">
             <input class="btn" type="submit" name="register-btn" value="Register">
           </div>
         </form>
@@ -50,29 +43,5 @@
     </div>
 
 
-    <!--javascript to validate user input for registration-->
-    <script>
-      function signupValidation() {
-        var valid = false;
-        var name = document.getElementById('name').value;
-        var username = document.getElementById('username').value;
-        var password = document.getElementById('password').value;
-        var passwordConfirm = document.getElementById('password_confirm');
-
-        //regex for input
-        var nameRegex = /^[a-zA-Z0-9]{3,20}$/;
-        var usernameRegex = /^[a-zA-Z0-9]{3,20}$/;
-        var passwordRegex = /^[a-zA-Z0-9]{5,20}$/;
-
-        //testing input with regex
-        var nameResult = nameRegex.test(name);
-        var usernameResult = usernameRegex.test(username);
-        var passwordResult = passwordRegex.test(password);
-
-        if (!nameResult || !usernameResult || !passwordResult) {
-          alert("invalid input");
-        }
-      }
-    </script>
   </body>
 </html>

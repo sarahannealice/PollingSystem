@@ -22,7 +22,7 @@ body {
     color: mediumslateblue;
     float: right;
     text-decoration: none;
-    font-weight: 700;
+    font-weight: 500;
 }
 
 h1 {
@@ -66,3 +66,31 @@ input.btn {
 
 
 /*----------panel layout----------*/
+/*https://stackoverflow.com/a/34854325*/
+input.candidate:after {
+    width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    top: -2px;
+    left: -1px;
+    position: relative;
+    background-color: lavenderblush;
+    content: '';
+    display: inline-block;
+    visibility: visible;
+    border: 2px solid white;
+}
+
+input.candidate:checked:after {
+    width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    top: -2px;
+    left: -1px;
+    position: relative;
+    background-color: palevioletred;
+    content: '';
+    display: inline-block;
+    visibility: visible;
+    border: 2px solid white;
+}
