@@ -8,7 +8,7 @@
         $password = $_POST['password'];
         $con = connect();
 
-        $query = "SELECT * FROM user WHERE username = '$username'";
+        $query = "SELECT * FROM users WHERE username = '$username'";
         $result = $con->query($query);
 
         if ($result->num_rows > 0) {
@@ -22,7 +22,7 @@
             echo "<script>alert('passwords must be between 5 and 20 characters long (excluding special characters)'); 
                     window.location.href='registration.html';</script>";
         } else {
-            $sql = "INSERT INTO user (name, username, password, admin) VALUES ('$name', '$username', '$password', 0)";
+            $sql = "INSERT INTO users (name, username, password, admin) VALUES ('$name', '$username', '$password', 0)";
             $result = $con->query($sql);
             header("location: login.html");
         }

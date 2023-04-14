@@ -1,7 +1,7 @@
 <?php
 ?>
 
-<!doctype html>
+<!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
@@ -15,7 +15,7 @@
             <h1>Welcome!</h1>
 
             <div class="candidate_form">
-                <form name="candidate" action="./register_candidate.html" method="post" onsubmit="">
+                <form name="candidate" action="register_candidate.html" method="post" onsubmit="">
                     <div class="row">
                         <div class="home_label">Register Candidate</div>
                         <input class="btn" type="submit" name="register_candidate" value="Register">

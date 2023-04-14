@@ -11,32 +11,32 @@
       <div class="register"><a href="login.html">Login</a></div>
 
       <div class="login_form">
-        <form name="register" action="./registration.php" method="post" onsubmit="signupValidation()">
+        <form name="register" action="./registration.php" method="post" onsubmit="return signupValidation()">
           <h1>Registration</h1>
 
           <div class="row">
             <div class="inline_block">
               <div class="form_label">Name</div>
-              <input class="input_text" type="text" name="name" required>
+              <input class="input_text" type="text" name="name" id="name" required>
             </div>
           </div>
 
           <div class="row">
             <div class="inline_block">
               <div class="form_label">Username</div>
-              <input class="input_text" type="text" name="username" required>
+              <input class="input_text" type="text" name="username" id="username" required>
             </div>
           </div>
 
           <div class="row">
             <div class="inline_block">
               <div class="form_label">Password</div>
-              <input class="input_text" type="password" name="password" required>
+              <input class="input_text" type="password" name="password" id="password" required>
             </div>
           </div>
 
           <div class="row">
-            <input class="btn" type="submit" name="register-btn" value="Register">
+            <input class="btn" type="submit" name="register_btn" value="Register">
           </div>
         </form>
       </div>
@@ -46,7 +46,7 @@
     <!--javascript to validate user input for registration-->
     <script>
       function signupValidation() {
-        var valid = false;
+        var valid;
         var name = document.getElementById('name').value;
         var username = document.getElementById('username').value;
         var password = document.getElementById('password').value;
@@ -62,11 +62,14 @@
         var passwordResult = passwordRegex.test(password);
 
         if (!nameResult) {
-          alert("name must be between 3 and 20 letters long");
+          alert("name must be between 3 and 20 letters long (excluding special characters)");
+          valid = false;
         } else if (!usernameResult) {
           alert("username must be between 3 and 20 characters long (excluding special characters)");
+          valid = false;
         } else if (!passwordResult) {
           alert("passwords must be between 5 and 20 characters long (excluding special characters)");
+          valid = false;
         } else {
           valid = true;
         }

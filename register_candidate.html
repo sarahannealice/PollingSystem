@@ -1,10 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8">
+    <title>Home</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
-<body>
 
+<body>
+<div class="container">
+    <div class="register"><a href="logout.php">Logout</a></div>
+    <h1>Welcome!</h1>
+
+    <div class="candidate_form">
+        <form name="candidate" action="./register_candidate.php" method="post" onsubmit="return nameValidation()">
+
+            <div class="row">
+                <div class="inline_block">
+                    <div class="form_label">Candidate's Name</div>
+                    <input class="input_text" type="text" name="candidate_name" id="candidate_name" required>
+                </div>
+            </div>
+
+            <div class="row">
+                <input class="btn" type="submit" name="register_candidate" value="Register">
+            </div>
+        </form>
+    </div>
+</div>
 </body>
 </html>
+
+<script>
+    function nameValidation() {
+        var valid;
+        var name = document.getElementById('candidate_name').value;
+        var nameRegex = /^[a-zA-Z0-9]{3,20}$/;
+        var nameResult = nameRegex.test(name);
+
+        if (!nameResult) {
+            alert("invalid username");
+            valid =  false;
+        } else {
+            valid = true;
+        }
+        return valid;
+    }
+</script>

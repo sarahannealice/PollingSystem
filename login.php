@@ -6,7 +6,7 @@
         $password = $_POST['password'];
         $con = connect();
 
-        $query = "SELECT * FROM user WHERE username = '$username' AND password = '$password'";
+        $query = "SELECT * FROM users WHERE username = '$username' AND password = '$password'";
         $data = $con->query($query);
 
         if ($data->num_rows > 0) {
