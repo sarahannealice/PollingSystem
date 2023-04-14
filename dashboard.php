@@ -3,6 +3,9 @@
     session_start();
     $con = connect();
 
+    //checks if user has already voted
+    if ()
+
     //collects current candidates
     $sql = "SELECT name FROM candidates";
     $candidates = $con->query($sql);
@@ -23,7 +26,7 @@
             <h1>may the odds be ever in your favour</h1>
 
             <div class="vote_form">
-                <form name="vote" action="./thank_you.php" method="post" onsubmit="userVoted()">
+                <form name="vote" action="" method="post" onsubmit="userVoted()">
                     <?php
                     foreach ($candidates as $row) {
                         ?>
@@ -43,25 +46,24 @@
         </div>
 
         <script>
+            //updates user voting history
             function userVoted() {
-                var mysql = require('mysql');
+                <?php
+                    echo "user: " . $_SESSION['user'];
+                    //updates user vote count -- unable to vote afterwards
+                    $sql = "UPDATE users SET history = 'test' WHERE username = '".$_SESSION['user']."'";
+                    $result = $con->query($sql);
 
-                var con = mysql.createConnection({
-                    host: "localhost",
-                    user: "root",
-                    password: "Password"
-                });
+                    //updates user vote history
+//                    $sql = "UPDATE users SET history = '' WHERE username = '".$_SESSION['user']."'";
+//                    $result = $con->query($sql);
+                ?>
 
-                con.connect(function(err) {
-                    if (err) throw err;
-                    console.log("Connected!");
-
-                    var sql = "UPDATE TABLE users (voted) VALUE ('1') WHERE username = '".$_SESSION['user']."'";
-                    con.query(sql, function (err, result) {
-                        if (err) throw err;
-                        console.log("Result: " + result);
-                    });
-                });
+                echo "$("btn").click(function(e) {
+                    $("input").filter(function(i, el) {
+                        return $(el).data("value") === $(e.target).data("value")
+                    }).prop("checked", true)
+                })";
             }
         </script>
     </body>

@@ -24,7 +24,7 @@
                 </form>
             </div>
 
-            <div class="votin">
+            <div class="voting">
                 <form name="go_vote" action="dashboard.php" method="post" onsubmit="">
                     <div class="row">
                         <div class="home_label">Go Vote!</div>

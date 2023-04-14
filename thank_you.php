@@ -4,6 +4,14 @@
     $con = connect();
 
     echo "user: " . $_SESSION['user'];
+    //updates user vote count -- unable to vote afterwards
+    $sql = "UPDATE users SET voted=true WHERE username = '".$_SESSION['user']."'";
+    $result = $con->query($sql);
+
+    //updates user vote history
+//    $sql = "UPDATE users SET history = '' WHERE username = '".$_SESSION['user']."'";
+//    $result = $con->query($sql);
+
 
 ?>
 

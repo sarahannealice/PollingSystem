@@ -1,5 +1,6 @@
 <?php
     include "config.php";
+    session_start();
 
     if (isset($_POST['username']) && isset($_POST['password'])) {
         $username = $_POST['username'];
@@ -17,12 +18,8 @@
 
             if ($userData['username'] == $username && $userData['password'] == $password) {
                 if ($userData['admin'] == 0) {
-                    //starts session
-                    session_start();
-
                     header("location: home.php");
                 } else
-                    session_start();
                     header("location: home_admin.php");
             } else {
                 //https://stackoverflow.com/a/29815470
