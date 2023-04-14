@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Login</title>
+    <title>Registration</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
   </head>
 
@@ -43,5 +43,35 @@
     </div>
 
 
+    <!--javascript to validate user input for registration-->
+    <script>
+      function signupValidation() {
+        var valid = false;
+        var name = document.getElementById('name').value;
+        var username = document.getElementById('username').value;
+        var password = document.getElementById('password').value;
+
+        //regex for input
+        var nameRegex = /^[a-zA-Z]{3,20}$/;
+        var usernameRegex = /^[a-zA-Z0-9]{3,20}$/;
+        var passwordRegex = /^[a-zA-Z0-9]{5,20}$/;
+
+        //testing input with regex
+        var nameResult = nameRegex.test(name);
+        var usernameResult = usernameRegex.test(username);
+        var passwordResult = passwordRegex.test(password);
+
+        if (!nameResult) {
+          alert("name must be between 3 and 20 letters long");
+        } else if (!usernameResult) {
+          alert("username must be between 3 and 20 characters long (excluding special characters)");
+        } else if (!passwordResult) {
+          alert("passwords must be between 5 and 20 characters long (excluding special characters)");
+        } else {
+          valid = true;
+        }
+        return valid;
+      }
+    </script>
   </body>
 </html>

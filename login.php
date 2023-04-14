@@ -14,9 +14,9 @@
 
             if ($userData['username'] == $username && $userData['password'] == $password) {
                 if ($userData['admin'] == 0) {
-                    header("location: dashboard.php");
+                    header("location: home.php");
                 } else
-                    header("location: dashboard_admin.php");
+                    header("location: home_admin.php");
             } else {
                 //https://stackoverflow.com/a/29815470
                 echo "<script>alert('an error has occurred. please try again'); window.location.href='login.html';</script>";

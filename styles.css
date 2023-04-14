@@ -65,7 +65,7 @@ input.btn {
 
 
 
-/*----------panel layout----------*/
+/*----------dashboard design----------*/
 /*https://stackoverflow.com/a/34854325*/
 input.candidate:after {
     width: 15px;
@@ -78,7 +78,7 @@ input.candidate:after {
     content: '';
     display: inline-block;
     visibility: visible;
-    border: 2px solid white;
+    border: 1px solid white;
 }
 
 input.candidate:checked:after {
@@ -92,5 +92,5 @@ input.candidate:checked:after {
     content: '';
     display: inline-block;
     visibility: visible;
-    border: 2px solid white;
+    border: 1px solid white;
 }
