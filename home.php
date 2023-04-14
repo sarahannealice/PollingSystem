@@ -1,4 +1,6 @@
 <?php
+    include "config.php";
+    session_start();
 ?>
 
 <!DOCTYPE html>
@@ -13,18 +15,9 @@
         <div class="container">
             <div class="register"><a href="logout.php">Logout</a></div>
             <h1>Welcome!</h1>
-
-            <div class="candidate_form">
-                <form name="candidate" action="register_candidate.html" method="post" onsubmit="">
-                    <div class="row">
-                        <div class="home_label">Register Candidate</div>
-                        <input class="btn" type="submit" name="register_candidate" value="Register">
-                    </div>
-                </form>
-            </div>
-
+            <h3>cheer for your candidate</h3>
             <div class="voting_form">
-                <form name="go_vote" action="vote_prep.php" method="post" onsubmit="">
+                <form name="go_vote" action="dashboard.php" method="post" onsubmit="">
                     <div class="row">
                         <div class="home_label">Go Vote!</div>
                         <input class="btn" type="submit" name="go_vote" value="Vote">

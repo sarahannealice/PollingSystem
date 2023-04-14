@@ -2,6 +2,7 @@
     include "config.php";
     session_start();
 ?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -25,7 +26,7 @@
             </div>
 
             <div class="votin">
-                <form name="go_vote" action="vote_prep.php" method="post" onsubmit="">
+                <form name="go_vote" action="dashboard.php" method="post" onsubmit="">
                     <div class="row">
                         <div class="home_label">Go Vote!</div>
                         <input class="btn" type="submit" name="go_vote" value="Vote">

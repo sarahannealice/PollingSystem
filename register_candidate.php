@@ -29,13 +29,8 @@
             $result = $con->query($sqlCan);
             $update = $con->query($sqlUser);
 
-            //sends to home page according to if admin or not
-            //need to figure this out
-            if ($admin === 1) {
-                header("location: home_admin.php");
-            } else {
-                header("location: home.php");
-            }
+            //sends user back to admin home page
+            header("location: home_admin.php");
         }
     }
 
