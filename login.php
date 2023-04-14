@@ -13,18 +13,18 @@
             $userData = $data->fetch_assoc();
 
             if ($userData['username'] == $username && $userData['password'] == $password) {
-                if ($userData['admin'] == 0)
+                if ($userData['admin'] == 0) {
                     header("location: dashboard.php");
-                else
+                } else
+                    echo "<script>alert('login successful');</script>";
                     header("location: dashboard_admin.php");
             } else {
-                header("location: login.html");
+                echo "<script>alert('an error has occurred. please try again'); window.location.href='login.html';</script>";
             }
         } else {
-            echo "incorrect username or password";
-            header("location: login.html");
+            echo "<script>alert('invalid username or password'); window.location.href='login.html';</script>";
         }
     } else {
-        header("location: login.html");
+        echo "<script>alert('invalid username or password'); window.location.href='login.html';</script>";
     }
 ?>

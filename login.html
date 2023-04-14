@@ -1,53 +1,53 @@
 <!DOCTYPE HTML>
 <html>
-<head>
-  <meta charset="utf-8">
-  <title>Login</title>
-  <link rel="stylesheet" type="text/css" href="styles.css">
-</head>
+  <head>
+    <meta charset="utf-8">
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+  </head>
 
-<body>
-<div class="container">
-  <div class="register"><a href="registration.html">Register</a></div>
+  <body>
+    <div class="container">
+      <div class="register"><a href="registration.html">Register</a></div>
 
-  <div class="login_form">
-    <form name="login" action="./login.php" method="post" onsubmit="loginValidation()">
-      <h1>Login</h1>
+      <div class="login_form">
+        <form name="login" action="./login.php" method="post" onsubmit="loginValidation()">
+          <h1>Login</h1>
 
-      <div class="row">
-        <div class="inline_block">
-          <div class="form_label">Username</div>
-          <input class="input_text" type="text" name="username" id="username" required>
-        </div>
+          <div class="row">
+            <div class="inline_block">
+              <div class="form_label">Username</div>
+              <input class="input_text" type="text" name="username" id="username" required>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="inline_block">
+              <div class="form_label">Password</div>
+              <input class="input_text" type="password" name="password" id="password" required>
+            </div>
+          </div>
+
+          <div class="row">
+            <input class="btn" type="submit" name="login_btn" value="Login">
+          </div>
+        </form>
       </div>
-
-      <div class="row">
-        <div class="inline_block">
-          <div class="form_label">Password</div>
-          <input class="input_text" type="password" name="password" id="password" required>
-        </div>
-      </div>
-
-      <div class="row">
-        <input class="btn" type="submit" name="login_btn" value="Login">
-      </div>
-    </form>
-  </div>
-</div>
+    </div>
 
 
-<!--javascript to validate user input for registration-->
-<!--https://html.form.guide/snippets/javascript-form-validation-using-regular-expression/-->
-<script>
-  function loginValidation() {
-    var username = document.getElementById('username').value;
-    var usernameRegex = /^[a-zA-Z0-9]{4,20}$/;
-    var usernameResult = usernameRegex.test(username);
+    <!--javascript to validate user input for registration-->
+    <!--https://html.form.guide/snippets/javascript-form-validation-using-regular-expression/-->
+    <script>
+      function loginValidation() {
+        var username = document.getElementById('username').value;
+        var usernameRegex = /^[a-zA-Z0-9]{3,20}$/;
+        var usernameResult = usernameRegex.test(username);
 
-    if (!usernameResult) {
-      alert("invalid username");
-    }
-  }
-</script>
-</body>
+        if (!usernameResult) {
+          alert("invalid username");
+        }
+      }
+    </script>
+  </body>
 </html>
