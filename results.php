@@ -16,6 +16,7 @@
 
     <body>
         <div class="container">
+            <div class="return"><a href="home_admin.php">Return</a></div>
             <div class="register"><a href="logout.php">Logout</a></div>
             <h1>Check out the Results!</h1>
 
