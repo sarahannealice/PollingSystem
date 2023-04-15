@@ -1,6 +1,5 @@
 <?php
     include "config.php";
-    include "validations.php";
     session_start();
     $con = connect();
 

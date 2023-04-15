@@ -17,7 +17,7 @@ session_start();
             <h1>Welcome!</h1>
 
             <div class="candidate_form">
-                <form name="candidate" action="./register_candidate.php" method="post" onsubmit="return nameValidation()">
+                <form name="candidate" method="post" onsubmit="return nameValidation()">
 
                     <div class="row">
                         <div class="inline_block">
@@ -27,7 +27,11 @@ session_start();
                     </div>
 
                     <div class="row">
-                        <input class="btn" type="submit" name="register_candidate" value="Register">
+                        <input class="btn" type="submit" formaction="register_candidate.php" name="register_candidate" value="Register">
+                    </div>
+
+                    <div class="row">
+                        <input class="btn" type="submit" formaction="remove_candidate.php" name="remove_candidate" value="Remove">
                     </div>
                 </form>
             </div>

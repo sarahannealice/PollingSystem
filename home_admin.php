@@ -18,14 +18,14 @@
             <div class="candidate">
                 <form name="candidate" action="candidate.php" method="post" onsubmit="">
                     <div class="row">
-                        <div class="home_label">Register Candidate</div>
-                        <input class="btn" type="submit" name="register_candidate" value="Register">
+                        <div class="home_label">Candidates</div>
+                        <input class="btn" type="submit" name="register_candidate" value="Manage">
                     </div>
                 </form>
             </div>
 
             <div class="voting">
-                <form name="go_vote" action="dashboard.php" method="post" onsubmit="">
+                <form name="go_vote" action="validate_vote.php" method="post" onsubmit="">
                     <div class="row">
                         <div class="home_label">Go Vote!</div>
                         <input class="btn" type="submit" name="go_vote" value="Vote">

@@ -1,9 +1,5 @@
 <?php
-    include "config.php";
     session_start();
-    $con = connect();
-
-    echo "user: " . $_SESSION['user'];
 ?>
 
 <!DOCTYPE HTML>

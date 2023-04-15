@@ -18,5 +18,5 @@
     $sql = "UPDATE users SET choice = '$vote' WHERE username = '".$_SESSION['user']."'";
     $result = $con->query($sql);
 
-    header("location: thank_you.php");
+    header("location: thank_you.html");
 ?>

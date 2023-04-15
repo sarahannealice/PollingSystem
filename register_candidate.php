@@ -6,14 +6,6 @@
         $con = connect();
         $name = $_POST['candidate_name'];
 
-        //grabs current user info to later check if admin or not
-        $id = $_SESSION['id'];
-        $sql = "SELECT * FROM users WHERE id = '$id'";
-        $result = $con->query($sql);
-        $user = $result->fetch_assoc();
-
-        $admin = $user['admin'];
-
         //checks if candidate already exists
         $query = "SELECT * FROM candidates WHERE name = '$name'";
         $result = $con->query($query);
@@ -24,10 +16,7 @@
             //registers new candidate and updates if user can vote or not
             $sqlCan = "INSERT INTO `candidates` (name) VALUES ('$name')";
             $result = $con->query($sqlCan);
-
-            //sends user back to admin home page
-            header("location: home_admin.php");
+            echo "<script>alert('candidate successfully registered'); window.location.href='candidate.php';</script>";
         }
     }
-
 ?>
