@@ -7,8 +7,12 @@
     $sql = "SELECT voted FROM users WHERE username = '".$_SESSION['user']."'";
     $userVoted = $con->query($sql);
 
+    $sql = "SELECT voted FROM users WHERE username = '".$_SESSION['user']."'";
+    $result = $con->query($sql);
+    $user = $result->fetch_assoc();
+
     //checks if user has already voted
-    if ($userVoted->fetch_assoc() === true) {
+    if ($user == 1) {
         echo "<script>alert('user already voted. unable to vote twice'); window.location.href='login.php';</script>";
         header("location: thank_you.php");
     } else {

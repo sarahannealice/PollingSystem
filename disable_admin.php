@@ -9,10 +9,13 @@
     $sql = "SELECT * FROM users WHERE username = '$user'";
     $result = $con->query($sql);
 
+    $admin = "SELECT admin FROM users WHERE username = '$user' LIMIT 1";
+    $check = $con->query($admin);
+
     if ($result->num_rows > 0) {
-        $delete = "DELETE FROM users WHERE users.username = '$user'";
-        $result = $con->query($delete);
-        echo "<script>alert('user successfully deleted'); window.location.href='edit_user.php';</script>";
+        $update = "UPDATE users SET admin = '0' WHERE users.username = '$user'";
+        $result = $con->query($update);
+        echo "<script>alert('admin rights successfully disabled'); window.location.href='edit_user.php';</script>";
     } else {
         echo "<script>alert('user doesn\'t exist'); window.location.href='edit_user.php';</script>";
     }

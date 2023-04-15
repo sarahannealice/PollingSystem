@@ -6,7 +6,7 @@ session_start();
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Home</title>
+        <title>Register Candidate</title>
         <link rel="stylesheet" type="text/css" href="styles.css">
     </head>
 
