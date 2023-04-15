@@ -23,12 +23,12 @@
             <h1>may the odds be ever in your favour</h1>
 
             <div class="vote_form">
-                <form name="vote" action="check_vote.php" method="post" onsubmit="userVoted()">
+                <form name="vote" action="thank_you.php" method="post" onsubmit="userVoted()">
                     <?php
                     foreach ($candidates as $row) {
                         ?>
                         <div class="row">
-                            <input type="radio" class="candidate" name="candidates" id="candidates<?php echo $row['name'] ?>" value="<?php echo $row['name'] ?>" required>
+                            <input type="radio" class="candidate" name="candidates" id="candidates '.$row['name'].'" value="'.$row['name'].'" required>
                             <label for="candidates<?php echo $row['name']?>"><?php echo $row['name'] ?></label>
                         </div>
 
@@ -51,6 +51,10 @@
                     $result = $con->query($sql);
                     $user = $result->fetch_assoc();
 
+                    //increases votes for voted candidates
+                    $vote = $_POST['candidates'];
+                    $voting = "UPDATE candidates SET votes = votes + 1 WHERE name = $vote";
+                    $result = $con->query($voting);
 
                     //checks if user has already voted
                     if ($_SESSION['user'].$user === 0) {
@@ -59,10 +63,10 @@
                         $sql = "UPDATE users SET voted = true WHERE username = '".$_SESSION['user']."'";
                         $result = $con->query($sql);
 
-                        //updates user vote history
-                        $sql = "UPDATE users SET history = 'test' WHERE username = '".$_SESSION['user']."'";
-                        $result = $con->query($sql);
-                        header("location: thank_you.php");
+//                        //updates user vote history
+//                        $sql = "UPDATE users SET history = 'test' WHERE username = '".$_SESSION['user']."'";
+//                        $result = $con->query($sql);
+//                        header("location: thank_you.php");
                     } else if ($_SESSION['user'].$user === 1) {
                         echo "<script>alert('user already voted. unable to vote twice');</script>";
 //                        header("location: thank_you.php");
