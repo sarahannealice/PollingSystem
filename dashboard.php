@@ -24,6 +24,7 @@
             <div class="vote_form">
                 <form name="vote" action="check_vote.php" method="post">
                     <?php
+                    //prints rows as radio buttons using 'name' column
                     foreach ($candidates as $row) {
                         ?>
                         <div class="row">

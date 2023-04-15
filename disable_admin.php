@@ -9,9 +9,7 @@
     $sql = "SELECT * FROM users WHERE username = '$user'";
     $result = $con->query($sql);
 
-    $admin = "SELECT admin FROM users WHERE username = '$user' LIMIT 1";
-    $check = $con->query($admin);
-
+    //checks if user exists
     if ($result->num_rows > 0) {
         $update = "UPDATE users SET admin = '0' WHERE users.username = '$user'";
         $result = $con->query($update);

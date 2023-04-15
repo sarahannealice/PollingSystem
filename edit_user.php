@@ -33,7 +33,6 @@ session_start();
 
                     <div class="row">
                         <div class="home_label">Disable Admin Rights</div>
-                        <!--formaction -- https://stackoverflow.com/a/46246125-->
                         <input class="btn" type="submit" formaction="disable_admin.php" name="admin" value="Update">
                     </div>
 

@@ -6,10 +6,11 @@
         $con = connect();
         $name = $_POST['candidate_name'];
 
-        //checks if candidate already exists
+        //collects data from database
         $query = "SELECT * FROM candidates WHERE name = '$name'";
         $result = $con->query($query);
 
+        //checks if candidate already exists
         if ($result->num_rows > 0) {
             echo "<script>alert('candidate already registered'); window.location.href='candidate.php';</script>";
         } else {

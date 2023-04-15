@@ -3,7 +3,7 @@
     session_start();
     $con = connect();
 
-
+    //gets radio button selected at 'submit'
     $vote = $_POST['vote'];
 
     //updates user vote count -- unable to vote afterwards

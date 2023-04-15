@@ -38,6 +38,7 @@ session_start();
         </div>
 
         <script>
+            //validates candidate name using regex
             function nameValidation() {
                 var valid;
                 var name = document.getElementById('candidate_name').value;

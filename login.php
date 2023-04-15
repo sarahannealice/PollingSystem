@@ -1,4 +1,5 @@
 <?php
+    //starts or continues session
     session_start();
 ?>
 
@@ -40,7 +41,7 @@
     </div>
 
 
-    <!--javascript to validate user input for registration-->
+    <!--javascript to validate user input for login-->
     <!--https://html.form.guide/snippets/javascript-form-validation-using-regular-expression/-->
     <!--https://www.tutorialspoint.com/How-to-stop-form-submission-using-JavaScript-->
     <script>

@@ -21,7 +21,7 @@
                 <div class="row">
                     <div class="inline_block">
                         <?php
-                        //collect top 2 voted
+                        //collects top 2 voted
                         $query = "SELECT * FROM candidates WHERE votes >= 0 ORDER BY votes DESC LIMIT 2;";
                         $result = $con->query($query);
                         if ($result->num_rows > 0) {

@@ -21,7 +21,7 @@
                 <div class="row">
                     <div class="inline_block">
                         <?php
-                        //collect all voted data
+                        //collects all voted data
                         $query = "SELECT * FROM candidates;";
                         $result = $con->query($query);
                         if ($result->num_rows > 0) {

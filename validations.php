@@ -5,13 +5,13 @@
         return preg_match($regex, $name);
     }
 
-    //validates name input
+    //validates username input
     function validUsername($name) {
         $regex = "/^[a-zA-Z0-9]{3,20}$/";
         return preg_match($regex, $name);
     }
 
-    //validates name input
+    //validates password input
     function validPassword($name) {
         $regex = "/^[a-zA-Z0-9]{3,20}$/";
         return preg_match($regex, $name);

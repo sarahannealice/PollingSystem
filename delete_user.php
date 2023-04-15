@@ -9,6 +9,7 @@
     $sql = "SELECT * FROM users WHERE username = '$user'";
     $result = $con->query($sql);
 
+    //checks if user exists
     if ($result->num_rows > 0) {
         $delete = "DELETE FROM users WHERE users.username = '$user'";
         $result = $con->query($delete);

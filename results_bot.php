@@ -22,7 +22,7 @@
                     <div class="inline_block">
                         <div class="form_label">
                             <?php
-                            //collect lowest voted
+                            //collects lowest voted
                             $query = "SELECT * FROM candidates WHERE votes >= 0 ORDER BY votes ASC LIMIT 1;";
                             $result = $con->query($query);
                             if ($result->num_rows > 0) {
