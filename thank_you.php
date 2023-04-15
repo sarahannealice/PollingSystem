@@ -1,17 +1,17 @@
 <?php
     include "config.php";
     session_start();
-    $con = connect();
-
-    //updates user vote count -- unable to vote afterwards
-    $sql = "UPDATE users SET voted = true WHERE username = '".$_SESSION['user']."'";
-    $result = $con->query($sql);
-
-    //updates candidates vote count
-    $vote = $_POST['vote'];
-    echo "<script>alert('voted: ' + $vote);</script>";
-    $query = "UPDATE candidates SET votes =  votes + 1 WHERE name = '$vote'";
-    $query = $con->query($query);
+//    $con = connect();
+//
+//    //updates user vote count -- unable to vote afterwards
+//    $sql = "UPDATE users SET voted = true WHERE username = '".$_SESSION['user']."'";
+//    $result = $con->query($sql);
+//
+//    //updates candidates vote count
+//    $vote = $_POST['vote'];
+//    echo "<script>alert('voted: ' + $vote);</script>";
+//    $query = "UPDATE candidates SET votes =  votes + 1 WHERE name = '$vote'";
+//    $query = $con->query($query);
 
     //updates user vote history
 //    $sql = "UPDATE users SET history = '' WHERE username = '".$_SESSION['user']."'";

@@ -7,15 +7,6 @@
     //collects current candidates
     $sql = "SELECT name FROM candidates";
     $candidates = $con->query($sql);
-
-    // if vote is selected
-    if(isset($_POST['submit'])) {
-        $vote = $_POST['vote'];
-
-        addVote($con, $vote, $_SESSION['user']);
-        header("location: thank_you.php");
-    }
-
 ?>
 
 <!DOCTYPE HTML>
@@ -32,12 +23,12 @@
             <h1>may the odds be ever in your favour</h1>
 
             <div class="vote_form">
-                <form name="vote" method="post">
+                <form name="vote" action="check_vote.php" method="post">
                     <?php
                     foreach ($candidates as $row) {
                         ?>
                         <div class="row">
-                            <input type="radio" class="candidate" name="vote" id="candidates<?php echo $row['name'] ?>" value="<?php echo $row['name'] ?>" required>
+                            <input type="radio" class="candidate" name="vote" id="candidate<?php echo $row['name'] ?>" value="<?php echo $row['name'] ?>" required>
                             <label for="candidates<?php echo $row['name']?>"><?php echo $row['name'] ?></label>
                         </div>
 

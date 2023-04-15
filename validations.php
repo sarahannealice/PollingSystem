@@ -25,6 +25,6 @@
         //updates candidates votes
         $query = "UPDATE candidates SET votes = votes + 1 WHERE name = '$vote'";
         $con->query($query);
-        header("location: thank_you.php");
+//        header("location: thank_you.php");
     }
 ?>
