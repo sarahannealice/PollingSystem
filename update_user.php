@@ -22,8 +22,8 @@
         $query = $con->query($query);
 
         //updates user vote history
-//        $sql = "UPDATE users SET history = 'test' WHERE username = '".$_SESSION['user']."'";
-//        $result = $con->query($sql);
+    //        $sql = "UPDATE users SET history = 'test' WHERE username = '".$_SESSION['user']."'";
+    //        $result = $con->query($sql);
         header("location: thank_you.php");
     }
 ?>

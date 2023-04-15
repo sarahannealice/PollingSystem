@@ -43,7 +43,7 @@
             </div>
 
             <div class="edit_user">
-                <form name="edit_user" action="edit.html" method="post" onsubmit="">
+                <form name="edit_user" action="edit_user.php" method="post" onsubmit="">
                     <div class="row">
                         <div class="home_label">Edit User</div>
                         <input class="btn" type="submit" name="edit_user" value="Edit">

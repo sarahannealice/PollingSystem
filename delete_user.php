@@ -4,7 +4,7 @@
     $con = connect();
 
     //gets boolean if user has voted already
-    $sql = "SELECT voted FROM users WHERE username = '".$_SESSION['user']."'";
+    $sql = "SELECT voted FROM users WHERE username = '" . $_SESSION['user'] . "'";
     $userVoted = $con->query($sql);
 
     //checks if user has already voted
@@ -14,16 +14,16 @@
     } else {
         echo "user: " . $_SESSION['user'];
         //updates user vote count -- unable to vote afterwards
-        $sql = "UPDATE users SET voted = true WHERE username = '".$_SESSION['user']."'";
+        $sql = "UPDATE users SET voted = true WHERE username = '" . $_SESSION['user'] . "'";
         $result = $con->query($sql);
 
         //updates candidates votes
-        $query = "UPDATE candidates SET votes =  votes + 1 WHERE name = '".$_SESSION['user']."'";
+        $query = "UPDATE candidates SET votes =  votes + 1 WHERE name = '" . $_SESSION['user'] . "'";
         $query = $con->query($query);
 
         //updates user vote history
-//        $sql = "UPDATE users SET history = 'test' WHERE username = '".$_SESSION['user']."'";
-//        $result = $con->query($sql);
+        //        $sql = "UPDATE users SET history = 'test' WHERE username = '".$_SESSION['user']."'";
+        //        $result = $con->query($sql);
         header("location: thank_you.php");
     }
 ?>
