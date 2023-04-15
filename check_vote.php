@@ -8,7 +8,7 @@
     $userVoted = $con->query($sql);
 
     //checks if user has already voted
-    if ($userVoted === true) {
+    if ($userVoted->fetch_assoc() === true) {
         echo "<script>alert('user already voted. unable to vote twice'); window.location.href='login.php';</script>";
         header("location: thank_you.php");
     } else {

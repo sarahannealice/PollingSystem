@@ -6,11 +6,6 @@
     //collects current candidates
     $sql = "SELECT name FROM candidates";
     $candidates = $con->query($sql);
-
-    //gets boolean if user has voted already
-    $sql = "SELECT * FROM users WHERE username = '".$_SESSION['user']."'";
-    $result = $con->query($sql);
-    $user = $result->fetch_assoc();
 ?>
 
 
@@ -50,12 +45,15 @@
         <script>
             //updates user voting history
             function userVoted() {
-<!--                --><?php
+                <?php
+                    //gets boolean if user has voted already
+                    $sql = "SELECT * FROM users WHERE username = '".$_SESSION['user']."'";
+                    $result = $con->query($sql);
+                    $user = $result->fetch_assoc();
+
+
                     //checks if user has already voted
-                    if ($_SESSION['user'].$userVoted == 1) {
-                        echo "<script>alert('user already voted. unable to vote twice');</script>";
-//                        header("location: thank_you.php");
-                    } else {
+                    if ($_SESSION['user'].$user === 0) {
                         echo "user: " . $_SESSION['user'];
                         //updates user vote count -- unable to vote afterwards
                         $sql = "UPDATE users SET voted = true WHERE username = '".$_SESSION['user']."'";
@@ -65,8 +63,11 @@
                         $sql = "UPDATE users SET history = 'test' WHERE username = '".$_SESSION['user']."'";
                         $result = $con->query($sql);
                         header("location: thank_you.php");
+                    } else if ($_SESSION['user'].$user === 1) {
+                        echo "<script>alert('user already voted. unable to vote twice');</script>";
+//                        header("location: thank_you.php");
                     }
-//                ?>
+                ?>
             }
         </script>
     </body>
