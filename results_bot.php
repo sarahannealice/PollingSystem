@@ -32,22 +32,20 @@
                 <div class="row">
                     <div class="inline_block">
                         <div class="form_label">Top: <?php
-                            // Execute the SQL query and store the result set in $result
-                            $result = mysqli_query($con, "SELECT * FROM candidates");
-
-                            // Initialize a variable to hold the candidate with the highest number of votes
-                            $top_candidate = null;
-
-                            // Loop through the result set to find the candidate with the highest number of votes
-                            while ($row = mysqli_fetch_assoc($result)) {
-                                if ($top_candidate == null || $row['votes'] > $top_candidate['votes']) {
-                                    $top_candidate = $row;
-                                }
-                            }
-
-                            // Filter the candidates by the number of votes of the top candidate
-                            $sql = "SELECT name FROM candidates WHERE votes = '" . $top_candidate['votes'] . "'";
-                            $top?></div>
+                            $query = "SELECT * FROM candidates WHERE votes >= 0 ORDER BY votes ASC LIMIT 1;";
+                            $result = $con->query($query);
+                            if ($result->num_rows > 0) {
+                                while ($row = $result->fetch_array()) {
+                                    ?>
+                                    <tr>
+                                        <td><?php echo $row['name']?></td>
+                                        <td><?php echo $row['votes']?></td>
+                                    </tr>
+                                    <br>
+                                <?php	}
+                            }else{
+                                echo "<h2>No record found!</h2>";
+                            } ?></div>
 
                     </div>
                 </div>
