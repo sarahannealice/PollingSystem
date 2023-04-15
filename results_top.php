@@ -5,13 +5,18 @@
 
     //collect top 2 voted
     //https://www.simplilearn.com/tutorials/sql-tutorial/second-highest-salary-in-sql#:~:text=To%20find%20the%20second%20highest%20salary%20in%20the%20above%20table,second%20highest%20salary%20in%20SQL.
-    $sqlTop = "SELECT MAX(votes), name FROM candidates";
-    $sqlSec = "SELECT MAX(votes), name FROM candidates WHERE votes < (SELECT MAX(votes) FROM candidates)";
+//    $sqlTop = "SELECT MAX(votes) FROM candidates";
+//    $sqlSec = "SELECT MAX(votes) FROM candidates WHERE votes < (SELECT MAX(votes) FROM candidates)";
+    $sqlTop = "SELECT * FROM candidates ORDER BY votes DESC";
+
 
     $top = $con->query($sqlTop);
-    $result = $top->fetch_assoc();
+//    $sec = $con->query($sqlSec);
 
-    $sec = $con->query($sqlSec);
+    $resultTop = $top->fetch_assoc();
+//    $resultSec = $sec->fetch_assoc();
+//    $result = $top . $sec;
+
 ?>
 
 <!DOCTYPE HTML>
@@ -30,7 +35,15 @@
             <form name="results" action="results.php" method="post">
                 <div class="row">
                     <div class="inline_block">
-                        <div class="form_label">Top: <?php echo"$result[name]"?></div>
+                        <?php
+                        foreach ($resultTop as $row) {
+                            ?>
+                            <div class="row">
+                                Top: <?php echo"$resultTop[name] $resultTop[votes]"?></div>
+                            </div>
+                            <?php
+                        }
+                        ?>
 
                     </div>
                 </div>
