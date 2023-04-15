@@ -12,7 +12,7 @@
 
   <body>
     <div class="container">
-      <div class="register"><a href="signup.html">Register</a></div>
+      <div class="register"><a href="signup.html">SignUp</a></div>
       <h1>Login</h1>
 
       <div class="login_form">

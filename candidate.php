@@ -14,7 +14,7 @@ session_start();
         <div class="container">
             <div class="return"><a href="home_admin.php">Return</a></div>
             <div class="register"><a href="logout.php">Logout</a></div>
-            <h1>Welcome!</h1>
+            <h1>Manage Candidates</h1>
 
             <div class="candidate_form">
                 <form name="candidate" method="post" onsubmit="return nameValidation()">

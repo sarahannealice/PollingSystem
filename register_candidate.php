@@ -11,7 +11,7 @@
         $result = $con->query($query);
 
         if ($result->num_rows > 0) {
-            echo "<script>alert('candidate already exists'); window.location.href='candidate.php';</script>";
+            echo "<script>alert('candidate already registered'); window.location.href='candidate.php';</script>";
         } else {
             //registers new candidate and updates if user can vote or not
             $sqlCan = "INSERT INTO `candidates` (name) VALUES ('$name')";
