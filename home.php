@@ -16,7 +16,7 @@
             <h1>Welcome!</h1>
             <h3>cheer for your candidate</h3>
             <div class="voting_form">
-                <form name="go_vote" action="dashboard.php" method="post" onsubmit="">
+                <form name="go_vote" action="validate_vote.php" method="post">
                     <div class="row">
                         <div class="home_label">Go Vote!</div>
                         <input class="btn" type="submit" name="go_vote" value="Vote">

@@ -1,5 +1,6 @@
 <?php
     include "config.php";
+    include "validations.php";
     session_start();
     $con = connect();
 
@@ -7,12 +8,15 @@
     $sql = "SELECT name FROM candidates";
     $candidates = $con->query($sql);
 
-    //gets boolean if user has voted already
-    $sql = "SELECT * FROM users WHERE username = '".$_SESSION['user']."'";
-    $result = $con->query($sql);
-    $user = $result->fetch_assoc();
-?>
+    // if vote is selected
+    if(isset($_POST['submit'])) {
+        $vote = $_POST['vote'];
 
+        addVote($con, $vote, $_SESSION['user']);
+        header("location: thank_you.php");
+    }
+
+?>
 
 <!DOCTYPE HTML>
 <html>
@@ -28,12 +32,12 @@
             <h1>may the odds be ever in your favour</h1>
 
             <div class="vote_form">
-                <form name="vote" action="check_vote.php" method="post">
+                <form name="vote" method="post">
                     <?php
                     foreach ($candidates as $row) {
                         ?>
                         <div class="row">
-                            <input type="radio" class="candidate" name="candidates" id="candidates<?php echo $row['name'] ?>" value="<?php echo $row['name'] ?>" required>
+                            <input type="radio" class="candidate" name="vote" id="candidates<?php echo $row['name'] ?>" value="<?php echo $row['name'] ?>" required>
                             <label for="candidates<?php echo $row['name']?>"><?php echo $row['name'] ?></label>
                         </div>
 
