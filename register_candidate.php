@@ -23,9 +23,7 @@
         } else {
             //registers new candidate and updates if user can vote or not
             $sqlCan = "INSERT INTO `candidates` (name) VALUES ('$name')";
-            $sqlUser = "UPDATE users SET registered = '1' WHERE users.id = '$id'";
             $result = $con->query($sqlCan);
-            $update = $con->query($sqlUser);
 
             //sends user back to admin home page
             header("location: home_admin.php");

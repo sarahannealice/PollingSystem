@@ -8,7 +8,7 @@
     $userVoted = $con->query($sql);
 
     //checks if user has already voted
-    if ($userVoted === true) {
+    if ($userVoted->fetch_assoc() === true) {
         echo "<script>alert('user already voted. unable to vote twice'); window.location.href='login.php';</script>";
         header("location: thank_you.php");
     } else {
@@ -18,8 +18,8 @@
         $result = $con->query($sql);
 
         //updates user vote history
-        $sql = "UPDATE users SET history = 'test' WHERE username = '".$_SESSION['user']."'";
-        $result = $con->query($sql);
-        header("location: thank_you.php");
+//        $sql = "UPDATE users SET history = 'test' WHERE username = '".$_SESSION['user']."'";
+//        $result = $con->query($sql);
+//        header("location: thank_you.php");
     }
 ?>

@@ -3,7 +3,7 @@
         //database configuration
         $host = "localhost";
         $username = "root";
-        $password = "Password";
+        $password = "";
         $dbname = "data_source";
 
         //create database connection
