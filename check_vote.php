@@ -16,6 +16,8 @@
         //updates user vote count -- unable to vote afterwards
         $sql = "UPDATE users SET voted = true WHERE username = '".$_SESSION['user']."'";
         $result = $con->query($sql);
+        $query = "UPDATE candidates SET votes =  votes + 1 WHERE name = '".$_SESSION['user']."'";
+        $query = $con->query($query);
 
         //updates user vote history
 //        $sql = "UPDATE users SET history = 'test' WHERE username = '".$_SESSION['user']."'";
