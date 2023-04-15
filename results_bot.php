@@ -32,8 +32,20 @@
                 <div class="row">
                     <div class="inline_block">
                         <div class="form_label">Top: <?php
-                            $sql = "SELECT name FROM candidates WHERE votes = '" . $top->votes . "'";
-                            $top?></div>
+                            $query = "SELECT * FROM candidates WHERE votes >= 0 ORDER BY votes ASC LIMIT 1;";
+                            $result = $con->query($query);
+                            if ($result->num_rows > 0) {
+                                while ($row = $result->fetch_array()) {
+                                    ?>
+                                    <tr>
+                                        <td><?php echo $row['name']?></td>
+                                        <td><?php echo $row['votes']?></td>
+                                    </tr>
+                                    <br>
+                                <?php	}
+                            }else{
+                                echo "<h2>No record found!</h2>";
+                            } ?></div>
 
                     </div>
                 </div>
